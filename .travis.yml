@@ -1,0 +1,24 @@
+language: python
+python:
+  - "2.7"
+
+
+# The build box uses Ubuntu 12.04, which provides ant 1.8.x . This project
+# needs at least ant 1.9.1 to get the "if" attribute (see
+# http://ant.apache.org/manual/ifunless.html).
+before_install:
+  - wget http://ftp-stud.hs-esslingen.de/pub/Mirrors/ftp.apache.org/dist//ant/binaries/apache-ant-1.9.4-bin.tar.bz2 -O /tmp/apache-ant-1.9.4-bin.tar.bz2
+  - tar --directory /tmp --extract --bzip2 --file /tmp/apache-ant-1.9.4-bin.tar.bz2
+
+
+install:
+  - pip install -q requests
+
+
+# 1) Build the flasher artifact.
+# 2) Install the required Ivy version and build the flasher_cli artifacts.
+# 3) deploy the artifacts to BinTray.
+script:
+  - /tmp/apache-ant-1.9.4/bin/ant bootstrap
+  - /tmp/apache-ant-1.9.4/bin/ant
+
