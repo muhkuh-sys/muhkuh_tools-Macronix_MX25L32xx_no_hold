@@ -3,6 +3,7 @@ python:
   - "2.7"
 
 
+
 # The build box uses Ubuntu 12.04, which provides ant 1.8.x . This project
 # needs at least ant 1.9.1 to get the "if" attribute (see
 # http://ant.apache.org/manual/ifunless.html).
@@ -11,8 +12,10 @@ before_install:
   - tar --directory /tmp --extract --bzip2 --file /tmp/apache-ant-1.9.4-bin.tar.bz2
 
 
+
 install:
   - pip install -q requests
+
 
 
 # 1) Build the flasher artifact.
